@@ -1,19 +1,19 @@
-import TodoList from "./components/TodoList";
-import TodoCounter from "./components/TodoCounter";
-import TodoSearch from "./components/TodoSearch";
-import TodoCreate from "./components/TodoCreate";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { TodoProvider } from "./components/TodoProvider";
+import { Home, New, Edit, NotFound } from "./pages";
 
 function App() {
   return (
-    <TodoProvider>
-      <div className="bg-slate-200 min-h-screen py-8 flex flex-col items-center gap-4">
-        <TodoCounter />
-        <TodoSearch />
-        <TodoList />
-        <TodoCreate />
-      </div>
-    </TodoProvider>
+    <BrowserRouter>
+      <TodoProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/new" element={<New />} />
+          <Route path="/edit/:id" element={<Edit />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </TodoProvider>
+    </BrowserRouter>
   );
 }
 

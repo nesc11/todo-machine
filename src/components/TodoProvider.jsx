@@ -24,13 +24,21 @@ export function TodoProvider({ children }) {
     );
   };
 
-  const handleAdd = (todo) => {
+  const handleAdd = (todoText) => {
     const newTodo = {
       id: Date.now(),
-      text: todo,
+      text: todoText,
       completed: false,
     };
     setTodos((prevTodos) => [...prevTodos, newTodo]);
+  };
+
+  const handleEdit = (id, todoText) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => {
+        return todo.id == id ? { ...todo, text: todoText } : todo;
+      })
+    );
   };
 
   const handleInput = (event) => {
@@ -47,6 +55,7 @@ export function TodoProvider({ children }) {
         handleDelete,
         handleComplete,
         handleAdd,
+        handleEdit,
         handleInput,
         filteredTodos,
         totalCompletedTodos,

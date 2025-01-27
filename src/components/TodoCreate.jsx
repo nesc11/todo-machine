@@ -1,24 +1,16 @@
-import { useState } from "react";
-import Modal from "./Modal";
-import TodoCreateForm from "./TodoCreateForm";
+import { useNavigate } from "react-router-dom";
 import { FaPlusCircle } from "react-icons/fa";
 
 function TodoCreate() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const toggleModal = () => setIsModalOpen((prevState) => !prevState);
+  const navigate = useNavigate();
   return (
     <>
       <button
         className="text-cyan-500 text-5xl hover:text-cyan-600"
-        onClick={toggleModal}
+        onClick={() => navigate("/new")}
       >
         <FaPlusCircle />
       </button>
-      {isModalOpen && (
-        <Modal>
-          <TodoCreateForm toggleModal={toggleModal} />
-        </Modal>
-      )}
     </>
   );
 }
